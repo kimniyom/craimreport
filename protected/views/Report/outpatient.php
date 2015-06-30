@@ -16,7 +16,23 @@
             $("#result").html(result);
         });
     }
+
+    function GetError(Error) {
+        var url = "<?php echo Yii::app()->createUrl('report/error_outpatient') ?>";
+        var data = {error_code: Error};
+        $.post(url, data, function (result) {
+            //alert(result);
+            $("#get_error").html(result);
+            var dialog = $("#error").data('dialog');
+            dialog.open();
+        });
+    }
 </script>
+
+<div data-role="dialog" id="error" data-close-button="true" class="padding20" data-overlay="true" data-overlay-color="op-dark">
+    <b>รหัสความผิดพลาด</b><br/><br/>
+    <div id="get_error"></div>
+</div>
 
 <?php
 $this->breadcrumbs = array(
@@ -165,7 +181,16 @@ $this->breadcrumbs = array(
                                             <td><?php echo $a++; ?></td>
                                             <td><?php echo $rss['Station'] ?></td>
                                             <td><?php echo $rss['Line'] ?></td>
-                                            <td><span class="icon mif-cancel" style="color:red;"></span> <?php echo $rss['CheckCode'] ?></td>
+                                            <td><span class="icon mif-cancel" style="color:red;"></span> 
+                                                <?php
+                                                $COUNT_ERROR = strlen(trim($rss['CheckCode']));
+                                                $ERRORCODE = substr($rss['CheckCode'], 1, $COUNT_ERROR - 1);
+                                                echo $ERRORCODE;
+                                                ?>
+                                                <a href="javascript:void(0)" onclick="GetError('<?php echo $ERRORCODE ?>')">
+                                                    <span class="icon mif-list" style=" float: right;"></span>
+                                                </a>
+                                            </td>
                                             <td><?php echo $rss['AuthCode'] ?></td>
                                             <td><?php echo $rss['DTTran'] ?></td>
                                             <td><?php echo $rss['InvNo'] ?></td>

@@ -1,9 +1,28 @@
+<script type="text/javascript">
+    function SetYear(Year) {
+        var url = "<?php echo Yii::app()->createUrl('report/set_year') ?>";
+        var data = {Year: Year};
+        $.post(url, data, function (success) {
+            window.location.reload();
+        });
+    }
+</script>
+
+<?php
+$this->breadcrumbs = array(
+    'ยินดีต้อนรับ ' . Yii::app()->session['name'],
+);
+?>
+
 <?php
 $Report = new Report();
 $Categories = $Report->CategoriesMonth();
 
-$year = date("Y") + 543;
-
+if (empty(Yii::app()->session['Year'])) {
+    $year = date("Y") + 543;
+} else {
+    $year = Yii::app()->session['Year'];
+}
 $Chart = new Chart();
 //Putpatient
 $ValueOutpatient = $Report->Sumamount("Outpatient", "AmountPaid", "DTTran", "Station", $year);
@@ -22,7 +41,18 @@ $ValueClaim = $Report->Sumamount("ClaimInsurance", "HDCharge", "BegHd", "Ext", $
 echo $Chart->ChartBar("ClaimInsurance", "bar", $Categories, $ValueClaim, "จำนวนเงินที่ขอเบิก", "ประจำปี พ.ศ. " . $year, "red");
 ?>
 
+
+
 <div class="example">
+    <!-- left -->
+    <div class="inline-block">
+        <button class="button dropdown-toggle">ปี พ.ศ. <?php echo $year; ?></button>
+        <ul class="split-content d-menu" data-role="dropdown">
+            <li><a href="Javascript:SetYear('<?php echo date('Y') + 543; ?>')"><?php echo date('Y') + 543; ?></a></li>
+            <li><a href="Javascript:SetYear('<?php echo (date('Y') + 543) - 1; ?>')"><?php echo (date('Y') + 543) - 1; ?></a></li>
+            <li><a href="Javascript:SetYear('<?php echo (date('Y') + 543) - 2; ?>')"><?php echo (date('Y') + 543) - 2; ?></a></li>
+        </ul>
+    </div>
     <div class="grid">
         <div class="row cells12">
             <div class="cell colspan6">

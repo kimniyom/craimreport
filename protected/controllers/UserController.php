@@ -47,4 +47,34 @@ class UserController extends Controller {
                 ->insert("MasUser", $column);
     }
 
+    public function actionEdit() {
+        $Use = new MasUser();
+        $Id = $_POST['Id'];
+
+        $data['use'] = $Use->find("id = '$Id' ");
+        $this->renderPartial("//User/edit", $data);
+    }
+
+    public function actionSave_edit() {
+        $Id = $_POST['Id'];
+        $column = array(
+            "Name" => $_POST['Name'],
+            "Lname" => $_POST['Lname'],
+            "Card" => $_POST['Card'],
+            "Tel" => $_POST['Tel'],
+            "Username" => $_POST['Username'],
+            "Password" => $_POST['Password']
+        );
+
+        Yii::app()->db->createCommand()
+                ->update("MasUser", $column, "Id = '$Id' ");
+    }
+
+    public function actionDelete() {
+        $Id = $_POST['Id'];
+
+        Yii::app()->db->createCommand()
+                ->delete("MasUser", "Id = '$Id' ");
+    }
+
 }

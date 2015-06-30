@@ -28,7 +28,76 @@
     }
 </script>
 
-<div data-role="dialog" id="dialog" data-close-button="true" class="padding20" data-overlay="true">
+<script>
+    function showDialog(id) {
+        var dialog = $(id).data('dialog');
+        dialog.open();
+    }
+
+    function Edit_user(Id) {
+        var url = "<?php echo Yii::app()->createUrl('user/edit') ?>";
+        var data = {Id: Id};
+        $.post(url, data, function (result) {
+            $("#load_from_edit").html(result);
+            var dialog = $("#edit_user").data('dialog');
+            dialog.open();
+        });
+
+    }
+
+    function Save_edit(Id) {
+        var url = "<?php echo Yii::app()->createUrl('user/save_edit') ?>";
+        var Name = $("#Name").val();
+        var Lname = $("#Lname").val();
+        var Card = $("#Card").val();
+        var Tel = $("#Tel").val();
+        var Username = $("#Username").val();
+        var Password = $("#Password").val();
+        var data = {
+            Id: Id,
+            Name: Name,
+            Lname: Lname,
+            Card: Card,
+            Tel: Tel,
+            Username: Username,
+            Password: Password
+        };
+        if (Name == '' || Lname == '' || Card == '' || Tel == '' || Username == '' || Password == '') {
+            alert("กรอกข้อมูลไม่ครบ ...");
+            return false;
+        }
+
+        $.post(url, data, function (success) {
+            window.location.reload();
+        });
+    }
+
+    function Delate(Id) {
+        var r = confirm("ต้องการลบข้อมูลนี้ ใช่ หรือ ไม่ ..?");
+        if (r == true) {
+            var url = "<?php echo Yii::app()->createUrl('user/delete') ?>";
+            var data = {Id: Id};
+
+            $.post(url, data, function (success) {
+                window.location.reload();
+            });
+        }
+    }
+</script>
+
+<?php
+$this->breadcrumbs = array(
+    'จัดการผู้ใช้งาน',
+);
+?>
+
+<!-- edit -->
+<div data-role="dialog" id="edit_user" data-close-button="true" class="success padding20" data-overlay="true" data-overlay-color="op-dark">
+    <div id="load_from_edit"></div>
+</div>
+
+<!-- Insert -->
+<div data-role="dialog" id="dialog" data-close-button="true" class="success padding20" data-overlay="true" data-overlay-color="op-dark">
 
     <div class="grid">
         <div class="row cells2">
@@ -76,7 +145,7 @@
     </div>
     <hr/>
     <center>
-        <button class="button" onclick="Register()">
+        <button class="button info block-shadow-info text-shadow" onclick="Register()">
             <span class="icon mif-checkmark"></span>
             เพิ่มผู้ใช้งาน
         </button>
@@ -85,12 +154,6 @@
 </div>
 
 
-<script>
-    function showDialog(id) {
-        var dialog = $(id).data('dialog');
-        dialog.open();
-    }
-</script>
 
 <button class="image-button" onclick="showDialog('#dialog')">
     เพิ่มผู้ใช้งาน
@@ -134,8 +197,8 @@
                         <td><?php echo $rs['Password'] ?></td>
                         <td><?php echo $rs['Status'] ?></td>
                         <td>
-                            <a href="#"><span class="icon mif-pencil"></span>Edit</a>&nbsp;
-                            <a href="#"><span class="icon mif-cancel"></span>Delete</a>
+                            <a href="#" onclick="Edit_user('<?php echo $rs['Id'] ?>')"><span class="icon mif-pencil"></span>Edit</a>&nbsp;
+                            <a href="#" onclick="Delate('<?php echo $rs['Id'] ?>');"><span class="icon mif-cancel"></span>Delete</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>

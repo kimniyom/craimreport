@@ -205,11 +205,11 @@ class UploadsController extends Controller {
         Yii::app()->db->createCommand($Call)->execute();
 
         echo "ข้อมูลทั้งหมด " . $total . "<br/><br/>";
-        
+
         if ($total != 0) {
             echo '<span class="icon mif-thumbs-up"></span>นำเข้าข้อมูลสำเร็จ ...<br/><br/>';
         }
-        
+
         if ($sum[0] != 0) {
             echo "==> นำเข้าตาราง Store_OutPatient จำนวน " . $sum[0] . "</br>";
         }

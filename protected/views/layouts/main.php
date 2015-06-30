@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="language" content="en" />
-
+        <title>SystemStatisticClaim</title>
         <link href="<?php echo Yii::app()->baseUrl; ?>/themes/metro/css/metro.css" rel="stylesheet"/>
         <link href="<?php echo Yii::app()->baseUrl; ?>/themes/metro/css/metro-icons.css" rel="stylesheet"/>
         <link href="<?php echo Yii::app()->baseUrl; ?>/themes/metro/css/docs.css" rel="stylesheet"/>
@@ -61,7 +61,7 @@
     </head>
 
     <body>
-
+        <!-- Dialog User-->
         <div class="app-bar fixed-top bg-dark" data-role="appbar">
             <div class="container full-size">
                 <a class="app-bar-element branding bg-brown">
@@ -94,8 +94,15 @@
                             -->
                         </ul>
                     </li>
+                    <!--
                     <li>
-                        <a href="<?php echo Yii::app()->createUrl('uploads/uploadfile') ?>">
+                        <a href="<?//php echo Yii::app()->createUrl('uploads/uploadfile') ?>">
+                            <span class="icon mif-file-upload"></span>
+                            นำเข้าไฟล์ข้อมูล</a>
+                    </li>
+                    -->
+                    <li>
+                        <a href="<?php echo Yii::app()->createUrl('upload_txt/uploadfile') ?>">
                             <span class="icon mif-file-upload"></span>
                             นำเข้าไฟล์ข้อมูล</a>
                     </li>
@@ -128,7 +135,6 @@
                                     ยินดีต้อนรับ <br/>
                                     คุณ <?php echo Yii::app()->session['name'] . ' ' . Yii::app()->session['lname']; ?><br/>
                                 </li>
-                                <li><a href=""><span class="mif-user-md icon"></span> ข้อมูลส่วนตัว</a></li>
                                 <li class="divider"></li>
                                 <li>
                                     <a href="<?php echo Yii::app()->createUrl('site/logout'); ?>">

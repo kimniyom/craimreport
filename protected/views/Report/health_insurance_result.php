@@ -2,7 +2,7 @@
 <div id="result">
   <div class="tabcontrol" data-role="tabControl">
     <ul class="tabs">
-      <li><a href="#frame_idA"><span class="icon mif-checkmark"></span>
+        <li><a href="#frame_idA" id="id_a"><span class="icon mif-checkmark"></span>
         <?php
         if (!empty($count['A'])) {
           echo "ผ่าน = " . $count['A'];
@@ -106,7 +106,7 @@
 
   <div class="tabcontrol" data-role="tabControl">
     <ul class="tabs">
-      <li><a href="#frame_idC"><span class="icon mif-warning"></span>
+        <li><a href="#frame_idC" id="id_c"><span class="icon mif-warning"></span>
         <?php
         if (!empty($count['C'])) {
           echo "ไม่ผ่าน = " . $count['C'];

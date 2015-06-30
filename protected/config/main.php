@@ -16,16 +16,15 @@ return array(
         'application.components.*',
     ),
     'modules' => array(
-        // uncomment the following to enable the Gii tool
-        /*
-        'gii' => array(
-            'class' => 'system.gii.GiiModule',
-            'password' => '1234',
-            // If removed, Gii defaults to localhost only. Edit carefully to taste.
-            'ipFilters' => array('127.0.0.1', '::1'),
-        ),
-         * 
-         */
+    // uncomment the following to enable the Gii tool
+
+      'gii' => array(
+      'class' => 'system.gii.GiiModule',
+      'password' => '1234',
+      // If removed, Gii defaults to localhost only. Edit carefully to taste.
+      'ipFilters' => array('127.0.0.1', '::1'),
+      ),
+   
     ),
     // application components
     'components' => array(
@@ -48,23 +47,23 @@ return array(
             'connectionString' => 'sqlite:' . dirname(__FILE__) . '/../data/testdrive.db',
         ),
         // uncomment the following to use a MySQL database
-        /*
         'db' => array(
-            'connectionString' => 'mysql:host=localhost;dbname=import_data',
+            'connectionString' => 'mysql:host=localhost;dbname=craim_db',
             'emulatePrepare' => true,
             'username' => 'root',
-            'password' => '1234',
+            'password' => '123456',
             'charset' => 'utf8',
         ),
+        /*
+          'db' => array(
+          'connectionString' => 'mysql:host=122.154.239.67;dbname=claim_db',
+          'emulatePrepare' => true,
+          'username' => 'root',
+          'password' => '01234',
+          'charset' => 'utf8',
+          ),
          * 
          */
-        'db' => array(
-            'connectionString' => 'mysql:host=122.154.239.67;dbname=claim_db',
-            'emulatePrepare' => true,
-            'username' => 'root',
-            'password' => '01234',
-            'charset' => 'utf8',
-        ),
         'errorHandler' => array(
             // use 'site/error' action to display errors
             'errorAction' => 'site/error',

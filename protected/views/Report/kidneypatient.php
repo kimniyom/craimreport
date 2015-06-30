@@ -43,7 +43,7 @@ $this->breadcrumbs = array(
       </div>
 
       <div class="button success" onclick="send_param()"><span class="icon mif-checkmark"></span> ตกลง</div><br/>
-      <font style='font-size: 12px; color: #ff3333;'>* เงื่อนไขวันที่ใช้ฟิวส์ DTTran</font>
+      <font style='font-size: 12px; color: #ff3333;'>* เงื่อนไขวันที่ใช้ฟิวส์ BegHd</font>
     </div>
 
     <hr>

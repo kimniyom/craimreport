@@ -187,4 +187,21 @@ class ReportController extends Controller {
         $this->renderPartial("//Report/claim_insurance_result", $data);
     }
 
+    public function actionSet_year() {
+        Yii::app()->session['Year'] = $_POST['Year'];
+    }
+
+    public function actionError_outpatient() {
+        $error_code = $_POST['error_code'];
+        $r = str_replace(",", "','", $error_code);
+        $TB = new Erroroutpatient();
+        $result = $TB->findAll("ErrorCode IN ('" . $r . "')");
+        $ERROR = "";
+        foreach ($result as $rs) {
+            $ERROR .= $rs['ErrorName'] . "<br/>";
+        }
+
+        echo $ERROR;
+    }
+
 }
