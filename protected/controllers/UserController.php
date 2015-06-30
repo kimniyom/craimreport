@@ -28,7 +28,23 @@ class UserController extends Controller {
     }
 
     public function actionGetuser() {
-        
+        $Use = new MasUser();
+        $data['use'] = $Use->findAll();
+
+        $this->render("//User/user", $data);
+    }
+
+    public function actionRegister() {
+        $column = array(
+            "Name" => $_POST['Name'],
+            "Lname" => $_POST['Lname'],
+            "Card" => $_POST['Card'],
+            "Tel" => $_POST['Tel'],
+            "Username" => $_POST['Username'],
+            "Password" => $_POST['Password']
+        );
+        Yii::app()->db->createCommand()
+                ->insert("MasUser", $column);
     }
 
 }
