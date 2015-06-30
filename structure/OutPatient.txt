@@ -1,0 +1,1 @@
+(Station, Line, AuthCode, DTTran, InvNo, BillNo, HN, MemberNo, AmountPaid,CheckCode)

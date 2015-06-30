@@ -1,0 +1,31 @@
+.no-br{
+	white-space: nowrap;
+}
+
+#id_a{
+	background:green;
+	}
+
+#id_c{
+	background: red;
+}
+
+thead,tr,th{
+	white-space: nowrap;
+}
+
+.t_right{
+	text-align: right;
+}
+
+#t_right{
+	text-align: right;
+}
+
+#t_center{
+	text-align: center;
+}
+
+.t_center{
+	text-align: center;
+}
